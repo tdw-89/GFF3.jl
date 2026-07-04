@@ -145,12 +145,11 @@ import BioGenerics.Exceptions: MissingFieldException
 
         filepath = joinpath(dir_gff3, filename(specimen))
 
-        if hastag(specimen, "gzip")
+        if hastag(specimen, "gzip") || hastag(specimen, "bgzip")
             @test check_gff3_parse_gzip(filepath)
         else
             @test check_gff3_parse(filepath)
         end
-
     end
 
     for specimen in list_invalid_specimens("GFF3")
